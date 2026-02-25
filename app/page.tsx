@@ -1,5 +1,5 @@
 "use client";
-
+import Link from "next/link";
 import Image from "next/image";
 
 export default function Home() {
@@ -63,9 +63,12 @@ function Hero() {
             các loại hạt và pana cota được tuyển chọn kỹ lưỡng.
           </p>
 
-          <button className="bg-[#4E6F3D] text-white px-10 py-4 rounded-full shadow-xl hover:scale-105 transition duration-300">
-            Khám phá ngay
-          </button>
+          <Link
+  href="/about"
+  className="bg-[#4E6F3D] text-white px-10 py-4 rounded-full shadow-xl hover:scale-105 transition inline-block"
+>
+  Khám phá ngay
+</Link>
         </div>
 
         <div className="relative h-[480px] rounded-[40px] overflow-hidden shadow-2xl">
