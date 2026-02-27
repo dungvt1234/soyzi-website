@@ -85,6 +85,17 @@ const itemVariants: Variants = {
 
 export default function GiftCatalogue() {
   const [selectedSet, setSelectedSet] = useState<GiftSet | null>(null);
+  const [isOrdering, setIsOrdering] = useState(false);
+
+  // Thay đổi link thực tế của bạn tại đây
+  const ZALO_LINK = "https://zalo.me/0528912222"; // Thay bằng SĐT Zalo
+  const MESSENGER_LINK = "https://www.facebook.com/soyzi.tauhutuoi"; // Thay bằng ID/Username Page
+
+  // Hàm đóng Modal sạch sẽ
+  const handleClose = () => {
+    setSelectedSet(null);
+    setTimeout(() => setIsOrdering(false), 300); // Trả về trạng thái info sau khi đóng modal
+  };
 
   return (
     <section className="py-16 md:py-24 bg-[#F8F6F1] px-4 md:px-6 overflow-hidden selection:bg-[#4E6F3D] selection:text-white">
@@ -123,58 +134,27 @@ export default function GiftCatalogue() {
               className="group flex flex-col cursor-pointer"
               onClick={() => setSelectedSet(set)}
             >
-              {/* --- IMAGE CONTAINER ĐÃ CHỈNH SỬA --- */}
               <div className="relative aspect-[1/1] md:aspect-[4/5] rounded-[20px] md:rounded-[40px] overflow-hidden mb-4 md:mb-6 shadow-sm group-hover:shadow-xl transition-all duration-500 border border-white bg-white">
-                
-                {/* 1. Nền mờ (Blurred Background) - Ôm trọn khung hình */}
                 <div className="absolute inset-0 z-0 scale-110 blur-2xl opacity-30">
-                    <Image 
-                      src={set.image} 
-                      alt=""
-                      fill
-                      className="object-cover"
-                      aria-hidden="true"
-                    />
+                    <Image src={set.image} alt="" fill className="object-cover" aria-hidden="true" />
                 </div>
-
-                {/* 2. Ảnh chính - object-contain - Không bị cắt */}
                 <div className="absolute inset-0 z-10 p-2 md:p-6">
-                  <Image 
-                    src={set.image} 
-                    alt={set.name} 
-                    fill 
-                    priority={idx < 3}
-                    className="object-contain transition-transform duration-700 group-hover:scale-105"
-                    sizes="(max-width: 768px) 50vw, 33vw"
-                  />
+                  <Image src={set.image} alt={set.name} fill priority={idx < 3} className="object-contain transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 768px) 50vw, 33vw" />
                 </div>
-
-                {/* Price Tag */}
                 <div className="absolute top-2 left-2 md:top-6 md:left-6 z-20">
                   <span className="bg-white/90 backdrop-blur-md text-[#4E6F3D] px-2.5 py-1 md:px-4 md:py-2 rounded-full text-[9px] md:text-sm font-bold shadow-sm">
                     {set.price}
                   </span>
                 </div>
-                {/* Desktop Overlay */}
-                <div className="hidden md:flex absolute inset-0 bg-[#4E6F3D]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 items-center justify-center z-20">
-                  <span className="bg-white text-[#2F2F2A] px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest shadow-lg">
-                    Xem chi tiết
-                  </span>
-                </div>
               </div>
 
-              <div className="px-1 z-10">
+              <div className="px-1">
                 <h3 className="text-sm md:text-2xl font-bold text-[#2F2F2A] mb-1 group-hover:text-[#4E6F3D] transition-colors line-clamp-1">
                   {set.name}
                 </h3>
                 <p className="text-[10px] md:text-base text-[#5A5A55] font-light line-clamp-2 leading-relaxed">
                   {set.desc}
                 </p>
-                <div className="mt-2.5 md:hidden">
-                  <span className="text-[9px] font-bold uppercase tracking-widest text-[#4E6F3D] border-b border-[#4E6F3D]">
-                    Chi tiết →
-                  </span>
-                </div>
               </div>
             </motion.div>
           ))}
@@ -185,79 +165,62 @@ export default function GiftCatalogue() {
       <AnimatePresence>
         {selectedSet && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 md:p-6">
-            {/* Backdrop */}
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setSelectedSet(null)}
-              className="absolute inset-0 bg-[#2F2F2A]/85 backdrop-blur-sm"
-            />
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={handleClose} className="absolute inset-0 bg-[#2F2F2A]/85 backdrop-blur-sm" />
 
-            {/* Modal Content */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative w-full max-w-5xl bg-[#F8F6F1] rounded-[24px] md:rounded-[50px] overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[92vh] md:max-h-none overflow-y-auto md:overflow-visible"
-            >
-              {/* Nút đóng */}
-              <button 
-                onClick={() => setSelectedSet(null)}
-                className="absolute top-3 right-3 md:top-8 md:right-8 z-30 w-9 h-9 md:w-10 md:h-10 rounded-full bg-white flex items-center justify-center shadow-lg text-[#2F2F2A] hover:bg-[#4E6F3D] hover:text-white transition-colors"
-              >
-                ✕
-              </button>
+            <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }} className="relative w-full max-w-5xl bg-[#F8F6F1] rounded-[24px] md:rounded-[50px] overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[92vh] md:max-h-[650px] overflow-y-auto md:overflow-visible">
+              
+              <button onClick={handleClose} className="absolute top-3 right-3 md:top-8 md:right-8 z-30 w-9 h-9 md:w-10 md:h-10 rounded-full bg-white flex items-center justify-center shadow-lg text-[#2F2F2A] hover:bg-[#4E6F3D] hover:text-white transition-colors">✕</button>
 
-              {/* Bên trái: Ảnh - CŨNG CHỈNH SỬA ĐỂ ÔM TRỌN */}
-              <div className="relative w-full md:w-1/2 aspect-[1.1/1] md:aspect-auto h-auto md:h-[650px] bg-white md:bg-transparent p-4 md:p-0">
-                 {/* Nền mờ cho Modal Image trên Desktop */}
-                 <div className="hidden md:block absolute inset-0 z-0 scale-110 blur-3xl opacity-20">
-                    <Image 
-                      src={selectedSet.image} 
-                      alt=""
-                      fill
-                      className="object-cover"
-                      aria-hidden="true"
-                    />
-                </div>
-                
-                {/* Ảnh chính contain */}
-                <div className="relative w-full h-full z-10 md:p-12">
-                    <Image 
-                        src={selectedSet.image} 
-                        alt={selectedSet.name} 
-                        fill 
-                        className="object-contain" 
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                    />
-                </div>
+              {/* Ảnh Modal */}
+              <div className="relative w-full md:w-1/2 aspect-[1.1/1] md:aspect-auto h-auto md:h-full bg-white md:bg-transparent p-4 md:p-12">
+                <Image src={selectedSet.image} alt={selectedSet.name} fill className="object-contain z-10" sizes="(max-width: 768px) 100vw, 50vw" />
               </div>
 
-              {/* Bên phải: Thông tin */}
-              <div className="w-full md:w-1/2 p-6 md:p-14 flex flex-col justify-center bg-[#F8F6F1]">
-                <span className="text-[#4E6F3D] font-bold tracking-[0.2em] uppercase text-[9px] md:text-[10px] mb-2 md:mb-3 block">Premium Gift Set</span>
-                <h2 className="text-2xl md:text-5xl font-bold text-[#2F2F2A] mb-3 md:mb-4 leading-tight">{selectedSet.name}</h2>
-                <div className="text-xl md:text-2xl text-[#4E6F3D] font-serif italic mb-5 md:mb-6">{selectedSet.price}</div>
-                
-                <p className="text-[#5A5A55] leading-relaxed mb-6 md:mb-8 font-light text-sm md:text-base">
-                  {selectedSet.longDesc}
-                </p>
+              {/* Thông tin Modal */}
+              <div className="w-full md:w-1/2 p-6 md:p-12 flex flex-col justify-center bg-[#F8F6F1]">
+                <AnimatePresence mode="wait">
+                  {!isOrdering ? (
+                    <motion.div key="info" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }}>
+                      <span className="text-[#4E6F3D] font-bold tracking-[0.2em] uppercase text-[9px] md:text-[10px] mb-2 block">Premium Gift Set</span>
+                      <h2 className="text-2xl md:text-5xl font-bold text-[#2F2F2A] mb-3 leading-tight">{selectedSet.name}</h2>
+                      <div className="text-xl md:text-2xl text-[#4E6F3D] font-serif italic mb-6">{selectedSet.price}</div>
+                      <p className="text-[#5A5A55] leading-relaxed mb-8 font-light text-sm md:text-base">{selectedSet.longDesc}</p>
+                      
+                      <div className="space-y-4 mb-10">
+                        <h4 className="font-bold text-[#2F2F2A] text-xs uppercase tracking-widest">Bao gồm:</h4>
+                        <ul className="space-y-2">
+                          {selectedSet.includes.map((item, i) => (
+                            <li key={i} className="flex items-start gap-3 text-sm text-[#5A5A55]">
+                              <span className="text-[#4E6F3D] mt-1 text-[10px]">✦</span> {item}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
 
-                <div className="space-y-3 md:space-y-4 mb-8 md:mb-10">
-                  <h4 className="font-bold text-[#2F2F2A] text-xs md:text-sm uppercase tracking-widest">Set quà bao gồm:</h4>
-                  <ul className="grid grid-cols-1 gap-1.5 md:gap-2">
-                    {selectedSet.includes.map((item, i) => (
-                      <li key={i} className="flex items-start gap-2.5 md:gap-3 text-sm text-[#5A5A55] leading-snug">
-                        <span className="text-[#4E6F3D] mt-1 text-xs">✦</span> {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                      <button onClick={() => setIsOrdering(true)} className="w-full bg-[#4E6F3D] text-white py-4 rounded-full font-bold uppercase tracking-widest text-[10px] hover:bg-[#3D5A30] transition-all">
+                        Đặt mua giỏ quà
+                      </button>
+                    </motion.div>
+                  ) : (
+                    <motion.div key="order" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="text-center py-10">
+                      <h3 className="text-2xl font-bold mb-4">Kết nối đặt hàng</h3>
+                      <p className="text-sm text-[#5A5A55] mb-8 font-light px-4">Đội ngũ Soyzi sẽ tư vấn mẫu thiệp và thời gian giao hàng chính xác nhất cho bạn.</p>
+                      
+                      <div className="space-y-4 max-w-[280px] mx-auto">
+                        <a href={ZALO_LINK} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 w-full bg-[#0068FF] text-white py-4 rounded-full font-bold uppercase tracking-widest text-[10px] hover:opacity-90 transition-all shadow-md">
+                          Zalo Tư vấn
+                        </a>
+                        <a href={MESSENGER_LINK} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 w-full bg-[#0084FF] text-white py-4 rounded-full font-bold uppercase tracking-widest text-[10px] hover:opacity-90 transition-all shadow-md">
+                          Messenger
+                        </a>
+                      </div>
 
-                <button className="w-full bg-[#4E6F3D] text-white py-3.5 md:py-4 rounded-full font-bold uppercase tracking-[0.2em] text-[10px] md:text-xs hover:bg-[#3D5A30] transition-all shadow-lg shadow-[#4E6F3D]/20">
-                  Đặt mua giỏ quà
-                </button>
+                      <button onClick={() => setIsOrdering(false)} className="mt-8 text-[10px] uppercase tracking-widest opacity-50 hover:opacity-100 underline underline-offset-4">
+                        Quay lại xem chi tiết
+                      </button>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             </motion.div>
           </div>
