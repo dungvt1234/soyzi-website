@@ -271,9 +271,9 @@ function Footer() {
           <p className="text-sm opacity-50 font-light">Dinh dưỡng minh bạch cho người Việt.</p>
         </div>
         <div className="flex gap-10 uppercase text-[10px] font-bold tracking-[3px]">
-          <a href="#">Facebook</a>
+          <a href="https://www.facebook.com/soyzi.tauhutuoi">Facebook</a>
           <a href="#">Instagram</a>
-          <a href="#">TikTok</a>
+          <a href="https://www.tiktok.com/@tauhutuoisoyzi?_r=1&_t=ZS-94GxyWlr0wy">TikTok</a>
         </div>
       </div>
       <div className="max-w-7xl mx-auto pt-20 mt-20 border-t border-[#4E6F3D]/10 text-[9px] font-bold opacity-30 tracking-[4px] uppercase text-center md:text-left">
