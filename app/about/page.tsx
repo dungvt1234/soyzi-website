@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, Variants } from "framer-motion";
 
-/* ================= TYPES & INTERFACES (Sửa lỗi gạch đỏ) ================= */
+/* ================= TYPES & INTERFACES ================= */
 interface CommunityBlockProps {
   title: string;
   desc: string;
@@ -28,6 +28,7 @@ interface ProcessCardProps {
 interface PremiumButtonProps {
   children: React.ReactNode;
   variant?: "primary" | "outline";
+  href?: string; // Thêm href để điều hướng
 }
 
 /* ================= ANIMATION VARIANTS ================= */
@@ -171,7 +172,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* --- PHẦN: GIFTING --- */}
+      {/* --- PHẦN: GIFTING EXPERIENCE --- */}
       <section className="py-24 md:py-40 px-4 md:px-6 bg-white">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-center">
           <motion.div 
@@ -184,7 +185,9 @@ export default function AboutPage() {
             <h3 className="text-[#4E6F3D] text-[10px] tracking-[6px] font-bold uppercase">Gifting Experience</h3>
             <h2 className="text-3xl md:text-6xl font-light">Gói trọn <span className="font-serif italic text-[#4E6F3D]">tinh hoa</span></h2>
             <p className="text-[#2F2F2A]/60 font-light max-w-md">Mỗi set quà của Soyzi là sự trân trọng dành cho những mối quan hệ bền chặt.</p>
-            <PremiumButton variant="outline">Catalogue Quà Tặng</PremiumButton>
+            
+            {/* Cập nhật href ở đây: Điều hướng đến ID của phần Set quà */}
+            <PremiumButton variant="outline" href="/gifts#gift-catalogue">Catalogue Quà Tặng</PremiumButton>
           </motion.div>
 
           <div className="grid grid-cols-2 gap-3 md:gap-4">
@@ -229,7 +232,7 @@ export default function AboutPage() {
   );
 }
 
-/* --- COMPONENTS CON (Đã tối ưu kiểu dữ liệu) --- */
+/* --- COMPONENTS CON --- */
 
 function CommunityBlock({ title, desc, images, reverse = false }: CommunityBlockProps) {
   return (
@@ -308,13 +311,13 @@ function ProcessCard({ src, step, title, offset }: ProcessCardProps) {
   );
 }
 
-function PremiumButton({ children, variant = "primary" }: PremiumButtonProps) {
+function PremiumButton({ children, variant = "primary", href }: PremiumButtonProps) {
   const styles = {
     primary: "bg-[#4E6F3D] text-white shadow-lg shadow-[#4E6F3D]/20",
     outline: "border border-[#4E6F3D] text-[#4E6F3D] hover:bg-[#4E6F3D] hover:text-white"
   };
-  
-  return (
+
+  const buttonContent = (
     <motion.button
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
@@ -323,4 +326,11 @@ function PremiumButton({ children, variant = "primary" }: PremiumButtonProps) {
       {children}
     </motion.button>
   );
+
+  // Nếu có href, bọc trong thẻ Link để điều hướng mượt mà
+  if (href) {
+    return <Link href={href}>{buttonContent}</Link>;
+  }
+
+  return buttonContent;
 }

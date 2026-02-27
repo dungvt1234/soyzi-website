@@ -74,7 +74,7 @@ export default function ProductsPage() {
     <main className="bg-[#F8F6F1] min-h-screen pb-20 font-sans">
       
       {/* Header - Tối ưu khoảng cách cho Mobile */}
-      <section className="pt-24 pb-10 md:pt-32 md:pb-16 px-6 text-center">
+      <section id="gift-catalogue" className="scroll-mt-20 py-16 md:py-24 bg-[#F8F6F1] px-4 md:px-6 ..."> className="pt-24 pb-10 md:pt-32 md:pb-16 px-6 text-center">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
           <span className="text-[#4E6F3D] font-bold tracking-[0.2em] uppercase text-[9px] mb-2 block">
             Soyzi Natural Food
