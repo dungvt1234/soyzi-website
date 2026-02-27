@@ -10,7 +10,7 @@ const categories = [
     title: "Sữa Chua Thủ Công",
     description: "Lên men tự nhiên, thuần khiết",
     items: [
-      { name: "Vị Truyền Thống", price: "10.000đ", unit: "hũ", image: "/soyzi1.png" },
+      { name: "Vị Truyền Thống", price: "10.000đ", unit: "hũ", image: "/scth.png" },
       { name: "Vị Nha Đam", price: "12.000đ", unit: "hũ", image: "/soyzi2.png" },
       { name: "Vị Việt Quất", price: "15.000đ", unit: "hũ", image: "/soyzi3.png" },
       { name: "Vị Chanh Leo", price: "12.000đ", unit: "hũ", image: "/soyzi4.png" },
@@ -25,8 +25,8 @@ const categories = [
     title: "Tàu Hũ Tươi",
     description: "Mềm mịn, tan ngay đầu lưỡi",
     items: [
-      { name: "Trân châu đường đen", price: "15.000đ", unit: "hũ", image: "/soyzi8.png" },
-      { name: "Vị Truyền thống", price: "12.000đ", unit: "hũ", image: "/soyzi9.png" },
+      { name: "Trân châu đường đen", price: "15.000đ", unit: "hũ", image: "/sctr.png" },
+      { name: "Vị Truyền thống", price: "12.000đ", unit: "hũ", image: "/scuong.png" },
       { name: "Sỉ 20 Hũ Tàu Hũ", price: "200.000đ", unit: "khay", image: "/soyzi8.png", isWholesale: true },
     ]
   },

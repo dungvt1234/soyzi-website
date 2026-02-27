@@ -1,26 +1,30 @@
-"use client"; // Bắt buộc phải có dòng này ở đầu file để dùng usePathname
-
+import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import { usePathname } from "next/navigation";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+
+export const metadata: Metadata = {
+  title: "Soyzi - Sữa chua tự nhiên",
+  description: "Sữa chua tự nhiên Soyzi - Tươi từ thiên nhiên, chuẩn khoa học.",
+};
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const pathname = usePathname();
-  const isHome = pathname === "/";
-
   return (
     <html lang="vi">
-      <body className="bg-[#F4F7F2] text-black antialiased">
-        <Navbar /> 
-        {/* pt-[88px] giúp đẩy nội dung xuống dưới Navbar ở các trang con */}
-        <main className={isHome ? "pt-0" : "pt-[88px]"}>
+      <body className="bg-[#F4F7F2] text-[#1F1F1F] antialiased">
+        {/* Navbar dùng cho toàn bộ website */}
+        <Navbar />
+
+        {/* Nội dung trang */}
+        <main className="min-h-screen pt-[88px]">
           {children}
         </main>
+
+        {/* Footer dùng cho toàn bộ website */}
         <Footer />
       </body>
     </html>

@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, Variants } from "framer-motion";
 
-/* ================= ĐỊNH NGHĨA INTERFACES (Sửa lỗi gạch đỏ) ================= */
+/* ================= TYPES & INTERFACES (Sửa lỗi gạch đỏ) ================= */
 interface CommunityBlockProps {
   title: string;
   desc: string;
@@ -125,7 +125,7 @@ export default function AboutPage() {
 
           <div className="grid md:grid-cols-2 gap-x-24 gap-y-16 md:gap-y-20">
             <div className="space-y-16 md:space-y-20">
-              <ValueItem number="01" title="Sự Minh Bạch" content="Mọi hạt đậu Non-GMO tại Soyzi đều có nguồn gốc từ trang trại VietGAP. Chúng tôi công khai mọi khâu sản xuất." />
+              <ValueItem number="01" title="Sự Minh Bạch" content="Mọi hạt đậu Non-GMO tại Soyzi đều có nguồn gốc rõ ràng từ các trang trại VietGAP. Chúng tôi công khai mọi khâu sản xuất." />
               <ValueItem number="02" title="Kỹ Nghệ Hiện Đại" content="Hệ thống tiệt trùng khép kín giúp sản phẩm giữ trọn dinh dưỡng tự nhiên mà không cần chất bảo quản." />
             </div>
             <div className="md:mt-32 space-y-16 md:space-y-20">
@@ -154,12 +154,12 @@ export default function AboutPage() {
             <CommunityBlock 
               title="Thiện nguyện từ Tâm"
               desc="Hành trình mang dinh dưỡng lành mạnh đến các mái ấm và người cao tuổi."
-              images={["/sztn1.png", "/sytn2.png", "/sztn3.png", "/szytn5.png", "/szytn8.png", "/szytn6.png"]}
+              images={["/sztn1.png", "/sytn2.png", "/sztn3.png", "/szytn8.png", "/szytn5.png", "/szytn6.png"]}
             />
             <CommunityBlock 
               title="Đồng hành & Tài trợ"
               desc="Ủng hộ các dự án giáo dục và sự kiện lan tỏa lối sống xanh bền vững."
-              images={["/sztc1.jpg", "/sztc2.jpg", "/sztc4.jpg", "/sztc9.jpg", "/sztc10.jpg", "/sztc6.jpg"]}
+              images={["/sztc1.jpg", "/sztc2.jpg", "/sztc9.jpg", "/sztc4.jpg", "/sztc10.jpg", "/sztc6.jpg"]}
               reverse={true}
             />
             <CommunityBlock 
@@ -171,7 +171,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* --- CÁC PHẦN CÒN LẠI --- */}
+      {/* --- PHẦN: GIFTING --- */}
       <section className="py-24 md:py-40 px-4 md:px-6 bg-white">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-center">
           <motion.div 
@@ -184,11 +184,7 @@ export default function AboutPage() {
             <h3 className="text-[#4E6F3D] text-[10px] tracking-[6px] font-bold uppercase">Gifting Experience</h3>
             <h2 className="text-3xl md:text-6xl font-light">Gói trọn <span className="font-serif italic text-[#4E6F3D]">tinh hoa</span></h2>
             <p className="text-[#2F2F2A]/60 font-light max-w-md">Mỗi set quà của Soyzi là sự trân trọng dành cho những mối quan hệ bền chặt.</p>
-            <Link href="/gifts">
-  <PremiumButton variant="outline">
-    Catalogue Quà Tặng
-  </PremiumButton>
-</Link>
+            <PremiumButton variant="outline">Catalogue Quà Tặng</PremiumButton>
           </motion.div>
 
           <div className="grid grid-cols-2 gap-3 md:gap-4">
@@ -204,6 +200,7 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* --- THE PROCESS --- */}
       <section className="py-24 md:py-32 bg-[#F2F4F0] px-4 md:px-6">
         <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-6 md:gap-8">
           <ProcessCard src="/soyzi13.png" step="tự nhiên" title="thuần khiết" offset={true} />
@@ -212,6 +209,7 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* --- CTA --- */}
       <section className="py-32 md:py-56 px-6 text-center">
         <motion.div 
           initial="hidden" 
@@ -315,6 +313,7 @@ function PremiumButton({ children, variant = "primary" }: PremiumButtonProps) {
     primary: "bg-[#4E6F3D] text-white shadow-lg shadow-[#4E6F3D]/20",
     outline: "border border-[#4E6F3D] text-[#4E6F3D] hover:bg-[#4E6F3D] hover:text-white"
   };
+  
   return (
     <motion.button
       whileHover={{ scale: 1.02 }}
