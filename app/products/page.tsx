@@ -73,8 +73,8 @@ export default function ProductsPage() {
   return (
     <main className="bg-[#F8F6F1] min-h-screen pb-20 font-sans">
       
-      {/* Header - Tối ưu khoảng cách cho Mobile */}
-      <section id="gift-catalogue" className="scroll-mt-20 py-16 md:py-24 bg-[#F8F6F1] px-4 md:px-6 ..."> className="pt-24 pb-10 md:pt-32 md:pb-16 px-6 text-center">
+      {/* Header - Đã sửa lỗi cú pháp hoàn toàn tại đây */}
+      <section className="pt-24 pb-10 md:pt-32 md:pb-16 px-6 text-center">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
           <span className="text-[#4E6F3D] font-bold tracking-[0.2em] uppercase text-[9px] mb-2 block">
             Soyzi Natural Food
@@ -88,12 +88,8 @@ export default function ProductsPage() {
         </motion.div>
       </section>
 
-      {/* Sub-menu - Ẩn thanh cuộn ngang trên Mobile */}
+      {/* Sub-menu */}
       <div className="sticky top-[60px] md:top-[70px] z-30 bg-[#F8F6F1]/90 backdrop-blur-md border-b border-[#4E6F3D]/5 py-3 overflow-x-auto scrollbar-hide">
-        <style jsx global>{`
-          .scrollbar-hide::-webkit-scrollbar { display: none; }
-          .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
-        `}</style>
         <div className="flex justify-start md:justify-center gap-3 px-6 min-w-max">
           {categories.map((cat) => (
             <a 
@@ -111,13 +107,12 @@ export default function ProductsPage() {
       {/* Danh sách sản phẩm */}
       <div className="max-w-7xl mx-auto px-4 md:px-6 mt-10 space-y-16 md:space-y-28">
         {categories.map((category) => (
-          <section key={category.id} id={category.id}>
+          <section key={category.id} id={category.id} className="scroll-mt-32">
             <div className="mb-8 px-2">
               <h2 className="text-2xl md:text-4xl font-bold text-[#4E6F3D]">{category.title}</h2>
               <p className="text-[#5A5A55] text-xs md:text-base italic font-serif opacity-70">{category.description}</p>
             </div>
 
-            {/* Grid 2 cột trên Mobile, 4 cột trên Desktop */}
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-10">
               {category.items.map((product, idx) => (
                 <motion.div 
@@ -125,17 +120,23 @@ export default function ProductsPage() {
                   initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
-                  className="bg-white p-2 md:p-4 rounded-[32px] md:rounded-[56px] shadow-sm border border-[#4E6F3D]/5 flex flex-col items-center text-center"
+                  className="bg-white p-2 md:p-4 rounded-[32px] md:rounded-[56px] shadow-sm border border-[#4E6F3D]/5 flex flex-col items-center text-center group"
                 >
                   <div className="relative w-full aspect-square rounded-[24px] md:rounded-[40px] overflow-hidden bg-[#FBFBFB] mb-3 md:mb-5">
-                    <Image 
-                      src={product.image} 
-                      alt={product.name} 
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
+                    <div className="absolute inset-0 z-0 scale-110 blur-xl opacity-20">
+                        <Image src={product.image} alt="" fill className="object-cover" />
+                    </div>
+                    <div className="relative z-10 w-full h-full p-2">
+                        <Image 
+                          src={product.image} 
+                          alt={product.name} 
+                          fill
+                          className="object-contain transition-transform duration-500 group-hover:scale-110"
+                        />
+                    </div>
+
                     {product.isWholesale && (
-                      <div className="absolute top-2 right-2 md:top-4 md:right-4 bg-[#4E6F3D] text-white text-[7px] md:text-[9px] font-black px-2 py-1 md:px-3 md:py-1 rounded-full uppercase tracking-widest">
+                      <div className="absolute top-2 right-2 md:top-4 md:right-4 bg-[#4E6F3D] text-white text-[7px] md:text-[9px] font-black px-2 py-1 md:px-3 md:py-1 rounded-full uppercase tracking-widest z-20">
                         Giá Sỉ
                       </div>
                     )}
@@ -146,7 +147,7 @@ export default function ProductsPage() {
                   </h3>
                   
                   <div className="flex flex-col items-center gap-0.5 md:gap-1 mb-3">
-                    <span className="text-[#4E6F3D] font-black text-xs md:text-xl">
+                    <span className="text-[#4E6F3D] font-black text-sm md:text-xl">
                       {product.price}
                     </span>
                     <span className="text-[#5A5A55]/50 text-[8px] md:text-[10px] font-bold uppercase">
