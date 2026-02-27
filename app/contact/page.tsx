@@ -84,14 +84,14 @@ export default function ContactPage() {
               className="w-full h-[300px] md:h-[350px] rounded-[32px] overflow-hidden shadow-sm border-4 border-white"
             >
               <iframe
-                src="https://www.google.com/maps/embed?pb=!4v1772208328683!6m8!1m7!1s_V_KRh4a9jskyCnsF6rckQ!2m2!1d10.36614253501133!2d107.0826730100905!3f147.19722113809067!4f-7.991557149753476!5f0.7820865974627469" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
+  src="https://www.google.com/maps/embed?pb=!4v1772208328683!6m8!1m7!1s_V_KRh4a9jskyCnsF6rckQ!2m2!1d10.36614253501133!2d107.0826730100905!3f147.19722113809067!4f-7.991557149753476!5f0.7820865974627469"
+  width="100%"
+  height="100%"
+  style={{ border: 0 }}
+  allowFullScreen
+  loading="lazy"
+  referrerPolicy="no-referrer-when-downgrade"
+/>
             </motion.div>
           </div>
 
