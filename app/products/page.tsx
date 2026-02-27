@@ -1,9 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
+/* ================= DỮ LIỆU SẢN PHẨM ================= */
 const categories = [
   {
     id: "sua-chua",
@@ -23,23 +25,6 @@ const categories = [
     ]
   },
   {
-    id: "tau-hu",
-    title: "Tàu Hũ Tươi",
-    description: "Mềm mịn, tan ngay đầu lưỡi",
-    items: [
-      { name: "Trân châu đường đen", price: "15.000đ", unit: "hũ", image: "/sctr.png" },
-      { name: "Vị Truyền thống", price: "12.000đ", unit: "hũ", image: "/scuong.png" },
-      { name: "Tàu hũ cốt dừa", price: "15.000đ", unit: "hũ", image: "/soyzi8.png" },
-      { name: "Tàu hũ lá dứa", price: "15.000đ", unit: "hũ", image: "/soyzi8.png" },
-      { name: "Tàu hũ gừng ấm", price: "12.000đ", unit: "hũ", image: "/soyzi8.png" },
-      { name: "Mix 5 vị đặc biệt", price: "70.000đ", unit: "set", image: "/soyzi8.png" },
-      { name: "Tàu hũ trân châu trắng", price: "15.000đ", unit: "hũ", image: "/soyzi8.png" },
-      { name: "Tàu hũ sầu riêng", price: "20.000đ", unit: "hũ", image: "/soyzi8.png" },
-      { name: "Tàu hũ trái cây", price: "18.000đ", unit: "hũ", image: "/soyzi8.png" },
-      { name: "Sỉ 20 Hũ Tàu Hũ", price: "200.000đ", unit: "khay", image: "/soyzi8.png", isWholesale: true },
-    ]
-  },
-  {
     id: "panna-cotta",
     title: "Panna Cotta",
     description: "Món tráng miệng chuẩn Ý, thanh mát",
@@ -48,12 +33,12 @@ const categories = [
       { name: "Panna Cotta Xoài Cát", price: "20.000đ", unit: "hũ", image: "/soyzi14.png" },
       { name: "Panna Cotta Việt Quất", price: "22.000đ", unit: "hũ", image: "/soyzi13.png" },
       { name: "Panna Cotta Chanh Dây", price: "20.000đ", unit: "hũ", image: "/soyzi13.png" },
-      { name: "Panna Cotta Phúc Bồn Tử", price: "25.000đ", unit: "hũ", image: "/soyzi13.png" },
       { name: "Panna Cotta Matcha", price: "22.000đ", unit: "hũ", image: "/soyzi13.png" },
       { name: "Panna Cotta Chocolate", price: "22.000đ", unit: "hũ", image: "/soyzi13.png" },
-      { name: "Panna Cotta Vani Hạnh Nhân", price: "25.000đ", unit: "hũ", image: "/soyzi13.png" },
-      { name: "Sỉ 12 Hũ Panna Mix", price: "210.000đ", unit: "hộp", image: "/soyzi13.png", isWholesale: true },
-      { name: "Sỉ 24 Hũ Panna (Giá sỉ)", price: "400.000đ", unit: "hộp", image: "/soyzi13.png", isWholesale: true },
+      { name: "Panna Cotta Vani", price: "25.000đ", unit: "hũ", image: "/soyzi13.png" },
+      { name: "Panna Cotta Mix Vị", price: "25.000đ", unit: "hũ", image: "/soyzi13.png" },
+      { name: "Sỉ 12 Hũ Panna", price: "210.000đ", unit: "hộp", image: "/soyzi13.png", isWholesale: true },
+      { name: "Sỉ 24 Hũ Panna", price: "400.000đ", unit: "hộp", image: "/soyzi13.png", isWholesale: true },
     ]
   },
   {
@@ -66,117 +51,58 @@ const categories = [
       { name: "Hạt Macca Nứt Vỏ", price: "65.000đ", unit: "túi", image: "/soyzi12.png" },
       { name: "Hạt Óc Chó Vàng", price: "55.000đ", unit: "túi", image: "/soyzi10.png" },
       { name: "Hạt Dẻ Cười Mỹ", price: "75.000đ", unit: "túi", image: "/soyzi10.png" },
-      { name: "Hạt Bí Xanh Ấn Độ", price: "40.000đ", unit: "túi", image: "/soyzi10.png" },
+      { name: "Hạt Bí Xanh", price: "40.000đ", unit: "túi", image: "/soyzi10.png" },
       { name: "Hạt Chia Úc", price: "35.000đ", unit: "túi", image: "/soyzi10.png" },
       { name: "Ngũ Cốc Granola", price: "85.000đ", unit: "hũ", image: "/soyzi10.png" },
-      { name: "Sỉ Thùng 10 Túi Hạt", price: "400.000đ", unit: "thùng", image: "/soyzi10.png", isWholesale: true },
+      { name: "Sỉ Thùng 10 Túi", price: "400.000đ", unit: "thùng", image: "/soyzi10.png", isWholesale: true },
       { name: "Combo 5 Loại Hạt", price: "220.000đ", unit: "set", image: "/soyzi10.png", isWholesale: true },
     ]
   }
 ];
 
 export default function ProductsPage() {
-  const scrollIntoView = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
-    e.preventDefault();
-    const element = document.getElementById(id);
-    if (element) {
-      const offset = 140; 
-      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-      window.scrollTo({ top: elementPosition - offset, behavior: "smooth" });
-    }
-  };
+  const [buyingProduct, setBuyingProduct] = useState<any>(null);
 
   return (
     <main className="bg-[#F8F6F1] min-h-screen pb-20 font-sans selection:bg-[#4E6F3D] selection:text-white">
       
       {/* Header */}
       <section className="pt-24 pb-10 md:pt-40 md:pb-24 px-6 text-center">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-          <span className="text-[#4E6F3D] font-bold tracking-[0.3em] uppercase text-[10px] md:text-xs mb-4 block">
-            Soyzi Natural Food
-          </span>
-          <h1 className="text-4xl md:text-7xl font-bold text-[#4E6F3D] mb-6 tracking-tight">
-            Thực đơn <span className="italic font-serif font-light text-[#2F2F2A]">Sản phẩm</span>
-          </h1>
-          <div className="w-20 h-1 bg-[#4E6F3D]/20 mx-auto rounded-full mb-6"></div>
-          <p className="text-[#5A5A55] max-w-xs md:max-w-lg mx-auto text-sm md:text-lg font-light leading-relaxed">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+          <span className="text-[#4E6F3D] font-bold tracking-[0.3em] uppercase text-[10px] mb-4 block">Soyzi Natural Food</span>
+          <h1 className="text-4xl md:text-7xl font-bold text-[#4E6F3D] mb-6 tracking-tight">Thực đơn Sản phẩm</h1>
+          <p className="text-[#5A5A55] max-w-lg mx-auto text-sm md:text-lg font-light">
             Tinh hoa nông sản Việt được chế biến thủ công, giữ trọn hương vị nguyên bản.
           </p>
         </motion.div>
       </section>
 
-      {/* Sub-menu Navigation */}
-      <nav className="sticky top-[60px] md:top-[70px] z-30 bg-[#F8F6F1]/80 backdrop-blur-xl border-b border-[#4E6F3D]/10 py-4 overflow-x-auto no-scrollbar">
-        <div className="flex justify-start md:justify-center gap-4 px-6 min-w-max">
-          {categories.map((cat) => (
-            <a 
-              key={cat.id} 
-              href={`#${cat.id}`}
-              onClick={(e) => scrollIntoView(e, cat.id)}
-              className="px-6 py-2.5 rounded-full border border-[#4E6F3D]/10 text-[#4E6F3D] text-[11px] md:text-sm font-bold bg-white/50 hover:bg-[#4E6F3D] hover:text-white transition-all duration-300 shadow-sm"
-            >
-              {cat.title}
-            </a>
-          ))}
-        </div>
-      </nav>
-
-      {/* Product Sections */}
-      <div className="max-w-[1600px] mx-auto px-4 md:px-12 mt-16 space-y-24 md:space-y-40">
+      {/* Danh sách sản phẩm */}
+      <div className="max-w-[1600px] mx-auto px-4 md:px-12 space-y-24">
         {categories.map((category) => (
-          <section key={category.id} id={category.id} className="scroll-mt-40">
-            <div className="mb-12 text-center md:text-left px-2">
-              <h2 className="text-3xl md:text-5xl font-bold text-[#4E6F3D] mb-2">{category.title}</h2>
-              <p className="text-[#5A5A55] text-sm md:text-xl italic font-serif opacity-80">{category.description}</p>
-            </div>
-
+          <section key={category.id} className="scroll-mt-40">
+            <h2 className="text-3xl md:text-5xl font-bold text-[#4E6F3D] mb-8">{category.title}</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-8">
               {category.items.map((product, idx) => (
                 <motion.div 
                   key={idx}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.5, delay: idx * 0.05 }}
-                  className="bg-white p-3 md:p-5 rounded-[24px] md:rounded-[40px] shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-500 border border-[#4E6F3D]/5 flex flex-col group"
+                  className="bg-white p-3 md:p-5 rounded-[24px] md:rounded-[40px] shadow-sm border border-[#4E6F3D]/5 flex flex-col group"
                 >
-                  <div className="relative w-full aspect-square rounded-[18px] md:rounded-[30px] overflow-hidden bg-white mb-4 shadow-inner flex items-center justify-center border border-gray-50">
-                    <div className="absolute inset-0 z-0 scale-125 blur-3xl opacity-10">
-                        <Image src={product.image} alt="" fill className="object-cover" />
-                    </div>
-                    <div className="relative w-4/5 h-4/5 z-10">
-                        <Image 
-                          src={product.image} 
-                          alt={product.name} 
-                          fill
-                          className="object-contain transition-transform duration-700 group-hover:scale-110"
-                          sizes="(max-width: 768px) 50vw, 20vw"
-                        />
-                    </div>
-                    {product.isWholesale && (
-                      <div className="absolute top-2 right-2 md:top-4 md:right-4 bg-[#4E6F3D] text-white text-[8px] md:text-[10px] font-black px-2 py-1 md:px-4 md:py-1.5 rounded-full uppercase tracking-widest z-20 shadow-lg">
-                        Giá Sỉ
-                      </div>
-                    )}
+                  {/* Container Ảnh chống cắt */}
+                  <div className="relative w-full aspect-square rounded-[18px] md:rounded-[30px] overflow-hidden bg-white mb-4 flex items-center justify-center border border-gray-50">
+                    <Image src={product.image} alt={product.name} fill className="object-contain p-2 transition-transform duration-700 group-hover:scale-110" />
                   </div>
-                  <div className="flex flex-col flex-grow text-center">
-                    <h3 className="text-[#2F2F2A] font-bold text-sm md:text-lg mb-2 line-clamp-1 group-hover:text-[#4E6F3D] transition-colors">
-                      {product.name}
-                    </h3>
-                    <div className="mt-auto flex flex-col items-center gap-1 mb-4">
-                      <span className="text-[#4E6F3D] font-black text-base md:text-2xl">
-                        {product.price}
-                      </span>
-                      <span className="text-[#5A5A55]/40 text-[9px] md:text-xs font-bold uppercase tracking-tighter">
-                        Đơn vị: {product.unit}
-                      </span>
-                    </div>
-                    <Link 
-                      href="tel:0528912222"
+                  <div className="text-center flex flex-col flex-grow">
+                    <h3 className="text-[#2F2F2A] font-bold text-sm md:text-lg mb-2 line-clamp-1">{product.name}</h3>
+                    <div className="text-[#4E6F3D] font-black text-base md:text-2xl mb-4 mt-auto">{product.price}</div>
+                    
+                    {/* Nút Mua Ngay */}
+                    <button 
+                      onClick={() => setBuyingProduct(product)}
                       className="w-full bg-[#4E6F3D] text-white py-3 md:py-4 rounded-xl md:rounded-[20px] text-[10px] md:text-xs uppercase font-black tracking-widest hover:bg-[#2F2F2A] transition-all duration-300 shadow-lg shadow-[#4E6F3D]/20 active:scale-95"
                     >
-                      Đặt hàng ngay
-                    </Link>
+                      Mua ngay
+                    </button>
                   </div>
                 </motion.div>
               ))}
@@ -184,6 +110,72 @@ export default function ProductsPage() {
           </section>
         ))}
       </div>
+
+      {/* --- MODAL LIÊN HỆ ĐẶT HÀNG --- */}
+      <AnimatePresence>
+        {buyingProduct && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+            {/* Backdrop */}
+            <motion.div 
+              initial={{ opacity: 0 }} 
+              animate={{ opacity: 1 }} 
+              exit={{ opacity: 0 }} 
+              onClick={() => setBuyingProduct(null)} 
+              className="absolute inset-0 bg-[#2F2F2A]/85 backdrop-blur-sm" 
+            />
+            
+            {/* Modal Content */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9, y: 20 }} 
+              animate={{ opacity: 1, scale: 1, y: 0 }} 
+              exit={{ opacity: 0, scale: 0.9, y: 20 }} 
+              className="relative w-full max-w-md bg-[#F8F6F1] rounded-[32px] md:rounded-[50px] overflow-hidden shadow-2xl p-8 md:p-12 text-center"
+            >
+              <button 
+                onClick={() => setBuyingProduct(null)} 
+                className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center text-[#2F2F2A] hover:bg-red-50"
+              >✕</button>
+
+              <div className="mb-6">
+                <div className="relative w-32 h-32 mx-auto bg-white rounded-3xl p-4 shadow-sm border border-gray-100 mb-4">
+                    <Image src={buyingProduct.image} alt={buyingProduct.name} fill className="object-contain p-2" />
+                </div>
+                <h3 className="text-xl md:text-2xl font-bold text-[#2F2F2A]">{buyingProduct.name}</h3>
+                <p className="text-[#4E6F3D] font-black text-lg">{buyingProduct.price}</p>
+              </div>
+
+              <p className="text-sm text-[#5A5A55] font-light mb-8">
+                Bạn muốn đặt hàng qua kênh nào? <br /> Soyzi sẽ hỗ trợ bạn ngay lập tức.
+              </p>
+
+              <div className="flex flex-col gap-4">
+                <a 
+                  href={`https://zalo.me/0528912222?text=${encodeURIComponent(`Chào Soyzi, mình muốn đặt mua sản phẩm: ${buyingProduct.name}`)}`} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="w-full bg-[#0068FF] text-white py-4 rounded-full font-bold uppercase tracking-widest text-[10px] md:text-xs shadow-lg shadow-[#0068FF]/20 active:scale-95 transition-all"
+                >
+                  Kết nối qua Zalo
+                </a>
+                <a 
+                  href="https://m.me/soyzi.vn" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="w-full bg-[#0084FF] text-white py-4 rounded-full font-bold uppercase tracking-widest text-[10px] md:text-xs shadow-lg shadow-[#0084FF]/20 active:scale-95 transition-all"
+                >
+                  Kết nối qua Messenger
+                </a>
+                <Link 
+                  href="tel:0528912222"
+                  className="w-full border border-[#4E6F3D] text-[#4E6F3D] py-4 rounded-full font-bold uppercase tracking-widest text-[10px] md:text-xs active:scale-95 transition-all"
+                >
+                  Gọi hotline trực tiếp
+                </Link>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
 
       <style jsx global>{`
         .no-scrollbar::-webkit-scrollbar { display: none; }
