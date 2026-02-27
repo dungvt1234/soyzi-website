@@ -63,7 +63,7 @@ export default function ContactPage() {
               className="grid sm:grid-cols-2 lg:grid-cols-1 gap-4"
             >
               {[
-                { icon: <FiMapPin />, title: "Địa chỉ", content: "Quận 1, TP. Hồ Chí Minh" },
+                { icon: <FiMapPin />, title: "Địa chỉ", content: "9G1 Ngô Đức Kế,F.Tam Thắng, TP. Hồ Chí Minh" },
                 { icon: <FiPhone />, title: "Hotline", content: "0528 912 222" },
                 { icon: <FiMail />, title: "Email", content: "info@soyzi.vn" },
               ].map((item, index) => (
