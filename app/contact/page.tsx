@@ -5,7 +5,7 @@ import { motion, Variants } from "framer-motion";
 import { FiMail, FiPhone, FiMapPin, FiSend } from "react-icons/fi";
 import toast, { Toaster } from "react-hot-toast";
 
-// Khai báo Variants chuẩn để không bị lỗi gạch đỏ khi truyền vào motion.div
+// Khai báo Variants chuẩn
 const fadeInUp: Variants = {
   initial: { opacity: 0, y: 30 },
   animate: { opacity: 1, y: 0 },
@@ -14,7 +14,6 @@ const fadeInUp: Variants = {
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Định nghĩa kiểu cho sự kiện Form
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -63,7 +62,7 @@ export default function ContactPage() {
               className="grid sm:grid-cols-2 lg:grid-cols-1 gap-4"
             >
               {[
-                { icon: <FiMapPin />, title: "Địa chỉ", content: "9G1 Ngô Đức Kế,F.Tam Thắng, TP. Hồ Chí Minh" },
+                { icon: <FiMapPin />, title: "Địa chỉ", content: "9G1 Ngô Đức Kế, F.Tam Thắng, TP. Hồ Chí Minh" },
                 { icon: <FiPhone />, title: "Hotline", content: "0528 912 222" },
                 { icon: <FiMail />, title: "Email", content: "info@soyzi.vn" },
               ].map((item, index) => (
@@ -77,6 +76,7 @@ export default function ContactPage() {
               ))}
             </motion.div>
 
+            {/* Sửa lỗi triệt để tại đây */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -84,12 +84,13 @@ export default function ContactPage() {
               className="w-full h-[300px] md:h-[350px] rounded-[32px] overflow-hidden shadow-sm border-4 border-white"
             >
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.520195255977!2d106.701812!3d10.771333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f40a765149f%3A0x673199859f7ef951!2zUXXhuq1uIDEsIEjhu5MgQ2jDrSBNaW5oLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1700000000000!5m2!1svi!2s"
+                src="https://www.google.com/maps/embed?pb=!4v1772208328683!6m8!1m7!1s_V_KRh4a9jskyCnsF6rckQ!2m2!1d10.36614253501133!2d107.0826730100905!3f147.19722113809067!4f-7.991557149753476!5f0.7820865974627469" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
               ></iframe>
             </motion.div>
           </div>

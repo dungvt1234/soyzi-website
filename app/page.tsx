@@ -238,7 +238,7 @@ function Contact() {
           <div className="space-y-10">
             <div>
               <p className="text-[10px] font-bold tracking-[4px] text-[#7A8B4E] mb-4 uppercase">Cửa hàng trải nghiệm</p>
-              <p className="text-xl font-light leading-relaxed">9G1 Ngô Đức Kế, P. Tam Thắng <br />TP. Vũng Tàu</p>
+              <p className="text-xl font-light leading-relaxed">9G1 Ngô Đức Kế, P. Tam Thắng <br />TP. HỒ CHÍ MINH</p>
             </div>
             <div>
               <p className="text-[10px] font-bold tracking-[4px] text-[#7A8B4E] mb-4 uppercase">Đường dây nóng</p>

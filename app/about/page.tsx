@@ -65,7 +65,7 @@ export default function AboutPage() {
               animate={{ opacity: 1, x: 0 }}
               className="flex items-center gap-4"
             >
-              <Image src="/logo.png" alt="Soyzi Logo" width={40} height={40} className="brightness-90 md:w-[45px]" />
+              <Image src="/logo-soyzi.png" alt="Soyzi Logo" width={40} height={40} className="brightness-90 md:w-[45px]" />
               <span className="h-[1px] w-8 md:w-12 bg-[#4E6F3D]/40"></span>
               <span className="text-[9px] md:text-[10px] tracking-[4px] md:tracking-[5px] font-bold text-[#4E6F3D] uppercase">Est. 2019</span>
             </motion.div>
