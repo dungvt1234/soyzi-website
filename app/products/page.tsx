@@ -18,10 +18,10 @@ const categories = [
       { name: "Vị Cốm", price: "15.000đ", unit: "hũ", image: "/suachuac.png" },
       { name: "Vị Nếp Cẩm", price: "15.000đ", unit: "hũ", image: "/suachuapnc.png" },
       { name: "Sữa Chua Hy Lạp", price: "30.000đ", unit: "hũ", image: "/suachuahl.png" },
-      { name: "Sữa Chua Uống", price: "15.000đ", unit: "hũ", image: "/suachuauong1.png" },
-      { name: "Vị Chanh Leo", price: "15.000đ", unit: "hũ", image: "/soyzi2.png" },
-      { name: "Combo Mix Vị", price: "150.000đ", unit: "thùng", image: "/combo.png", isWholesale: true },
-      { name: "Sỉ 50 Hũ (Giá tốt)", price: "400.000đ", unit: "thùng", image: "/combo1.png", isWholesale: true },
+      { name: "Sữa Chua Uống", price: "15.000đ", unit: "hũ", image: "/scuong1.png" },
+      { name: "Sữa chua thạch", price: "15.000đ", unit: "hũ", image: "/scthach.png" },
+      { name: "Combo Mix Vị", price: "150.000đ", unit: "thùng", image: "/gioquasc.png", isWholesale: true },
+      { name: "Sỉ 50 Hũ (Giá tốt)", price: "400.000đ", unit: "thùng", image: "/gioquasc1.png", isWholesale: true },
     ]
   },
   {
@@ -29,16 +29,16 @@ const categories = [
     title: "Tàu Hũ Tươi Organic",
     description: "Thanh mát nguyên bản từ hạt đậu nành hữu cơ",
     items: [
-      { name: "Tàu Hũ Truyền Thống", price: "15.000đ", unit: "hũ", image: "/soyzi14.png" },
-      { name: "Tàu Hũ Trân Châu", price: "20.000đ", unit: "hũ", image: "/soyzi14.png" },
-      { name: "Tàu Hũ Sầu Riêng", price: "25.000đ", unit: "hũ", image: "/soyzi14.png" },
-      { name: "Tàu Hũ Matcha", price: "20.000đ", unit: "hũ", image: "/soyzi14.png" },
-      { name: "Tàu Hũ Lá Dứa", price: "20.000đ", unit: "hũ", image: "/soyzi14.png" },
-      { name: "Tàu Hũ Khoai Môn", price: "20.000đ", unit: "hũ", image: "/soyzi14.png" },
-      { name: "Tàu Hũ Đào Cam Sả", price: "22.000đ", unit: "hũ", image: "/soyzi14.png" },
-      { name: "Tàu Hũ Mix Vị", price: "25.000đ", unit: "hũ", image: "/soyzi14.png" },
-      { name: "Sỉ 10 Hũ Tàu Hũ", price: "135.000đ", unit: "hộp", image: "/soyzi14.png", isWholesale: true },
-      { name: "Sỉ 20 Hũ Tàu Hũ", price: "250.000đ", unit: "hộp", image: "/soyzi14.png", isWholesale: true },
+      { name: "Tàu Hũ Truyền Thống", price: "15.000đ", unit: "hũ", image: "/tau1.png" },
+      { name: "Tàu Hũ Trân Châu", price: "20.000đ", unit: "hũ", image: "/tauhuduongden.png" },
+      { name: "Tàu Hũ Khoai Môn", price: "25.000đ", unit: "hũ", image: "/tauhukhoaimon.png" },
+      { name: "Tàu Hũ Matcha", price: "20.000đ", unit: "hũ", image: "/tauhuladua.png" },
+      { name: "Tàu Hũ Lá Dứa", price: "20.000đ", unit: "hũ", image: "/tauhuladua1.png" },
+      { name: "Kích thích vị giác", price: "15.000đ", unit: "hũ", image: "/tauhunguyenban1.png" },
+      { name: "Đánh thức mọi giác quan", price: "20.000đ", unit: "hũ", image: "/tauhuladua2.png" },
+      { name: "Combo 3 vị", price: "50.000d", unit: "hũ", image: "/tauhu3vi.png" },
+      { name: "Combo 5 vị", price: "70.000đ", unit: "hộp", image: "/tauhu5vi.png", isWholesale: true },
+      { name: "Sỉ 10 Hũ Tàu Hũ", price: "150.000đ", unit: "hộp", image: "/soyzi14.png", isWholesale: true },
     ]
   },
   {
@@ -53,7 +53,7 @@ const categories = [
       { name: "Panna Cotta Matcha", price: "22.000đ", unit: "hũ", image: "/pnmatcha1.png" },
       { name: "Panna Cotta Chocolate", price: "22.000đ", unit: "hũ", image: "/pnsocola2.png" },
       { name: "Panna Cotta sac chia mật ong", price: "25.000đ", unit: "hũ", image: "/pnsachiamatong1.png" },
-      { name: "Panna Cotta kiwi", price: "25.000đ", unit: "hũ", image: "/pnkiwi.png" },
+      { name: "Panna Cotta mix vị", price: "25.000đ", unit: "hũ", image: "/pnmix.png" },
       { name: "Sỉ 12 Hũ Panna", price: "210.000đ", unit: "hộp", image: "/soyzi13.png", isWholesale: true },
       { name: "Sỉ 24 Hũ Panna", price: "400.000đ", unit: "hộp", image: "/soyzi13.png", isWholesale: true },
     ]
@@ -132,7 +132,7 @@ export default function ProductsPage() {
               className="group flex flex-col items-center flex-none text-center space-y-2 active:scale-95 transition-all"
             >
               <span className="text-[#1A1A1A]/60 font-bold text-[10px] md:text-xs tracking-widest uppercase group-hover:text-[#4E6F3D] transition-colors">
-                {category.title.split(' ')[0] + ' ' + (category.title.split(' ')[1] || '')}
+                {category.title}
               </span>
               <div className="w-6 h-px bg-[#4E6F3D] scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
             </button>

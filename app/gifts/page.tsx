@@ -42,7 +42,7 @@ const giftSets: GiftSet[] = [
   {
     name: "Set Thuần Khiết",
     desc: "Sữa chua hạt sen kết hợp mứt trái cây nhiệt đới.",
-    image: "/sqsz4.png",
+    image: "/setqua2.png",
     price: "180.000đ",
     longDesc: "Một sự kết hợp đậm chất Á Đông giữa hạt sen Đồng Tháp bùi ngậy và sữa chua mịn màng. Set quà mang lại cảm giác thư thái và nguồn năng lượng dồi dào từ thiên nhiên.",
     includes: ["04 Hũ sữa chua hạt sen", "02 Hũ mứt xoài cát Hòa Lộc", "01 Túi trà mộc quế hoa", "Túi vải Canvas bảo vệ môi trường"]
@@ -50,7 +50,7 @@ const giftSets: GiftSet[] = [
   {
     name: "Năng Lượng Xanh",
     desc: "Sữa chua Hy Lạp, ngũ cốc và Granola mật ong.",
-    image: "/sqsz5.png",
+    image: "/setqua3.png",
     price: "320.000đ",
     longDesc: "Giải pháp hoàn hảo cho bữa sáng hoặc bữa phụ năng động. Granola nướng mật ong hòa quyện cùng sữa chua Hy Lạp tạo nên hương vị bùng nổ, giúp duy trì vóc dáng và sức khỏe.",
     includes: ["04 Hũ sữa chua Hy Lạp", "01 Túi Granola mật ong (250g)", "01 Lọ mật ong hoa cà phê", "Thìa gỗ thủ công tinh tế"]
@@ -58,7 +58,7 @@ const giftSets: GiftSet[] = [
   {
     name: "Set Signature",
     desc: "Các vị best-seller trong hộp gỗ thủ công.",
-    image: "/sqsz6.png",
+    image: "/setqua1.png",
     price: "590.000đ",
     longDesc: "Lựa chọn hoàn hảo nhất để khám phá thế giới hương vị Soyzi. Từng sản phẩm trong set Signature đều là những món 'tủ' được khách hàng yêu thích nhất trong suốt hành trình 2019 đến nay.",
     includes: ["08 Hũ sữa chua tuyển chọn các vị", "02 Hũ hạt đặc sản vùng miền", "01 Khay gỗ phục vụ cao cấp", "Bộ thiệp và Catalogue nghệ thuật"]
