@@ -223,7 +223,7 @@ function Products() {
           />
           <ProductCard 
             num="03"
-            title="Hạt dưỡng" 
+            title="Pana cotta" 
             desc="Kết tinh giá trị dinh dưỡng cho một lối sống cân bằng và bền vững." 
             image="/soyzi15.png"
           />
